@@ -1,0 +1,13 @@
+:root {
+  --inverse: #000;
+  --secondary: #757575;
+  --accent: #e1e1e1;
+  --accent-light: #ececec;
+}
+
+.dark {
+  --inverse: #fff;
+  --secondary: #939393;
+  --accent: #1d1d1d;
+  --accent-light: #3b3b3b;
+}

@@ -1,0 +1,70 @@
+{
+  "name": "ar1-remix-boilerplate",
+  "private": true,
+  "description": "",
+  "license": "",
+  "author": {
+    "name": "Ahmed Riad",
+    "url": "https://ar1.dev"
+  },
+  "sideEffects": false,
+  "main": "build/index.js",
+  "scripts": {
+    "postinstall": "remix setup cloudflare-workers",
+    "prepare": "husky install",
+    "build:css": "cross-env NODE_ENV=production postcss styles/**/*.css --base styles --dir app/styles",
+    "build": "npm run build:css && cross-env NODE_ENV=production remix build",
+    "dev:remix": "cross-env NODE_ENV=development remix watch",
+    "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --watch",
+    "dev:css": "cross-env NODE_ENV=development postcss styles/**/*.css --base styles --dir app/styles --w",
+    "dev": "npm run build:css && cross-env NODE_ENV=development remix build && run-p dev:*",
+    "start": "cross-env NODE_ENV=production miniflare ./build/index.js",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext js,jsx,ts,tsx .",
+    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|gql|graphql|mdx|vue)\"",
+    "typecheck": "tsc -b",
+    "validate": "sh ./other/validate",
+    "deploy": "npm run build && wrangler publish --env production"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.5.0",
+    "@heroicons/react": "^1.0.5",
+    "@remix-run/cloudflare-workers": "^1.2.3",
+    "@remix-run/react": "^1.2.3",
+    "clsx": "^1.1.1",
+    "error-stack-parser": "^2.0.7",
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "remix": "^1.2.3",
+    "zustand": "^3.7.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^2.2.2",
+    "@remix-run/dev": "^1.2.3",
+    "@remix-run/eslint-config": "^1.2.3",
+    "@types/lodash": "^4.14.179",
+    "@types/react": "^17.0.24",
+    "@types/react-dom": "^17.0.9",
+    "autoprefixer": "^10.4.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.9.0",
+    "husky": "^7.0.4",
+    "miniflare": "^2.1.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.7",
+    "postcss-cli": "^9.1.0",
+    "prettier": "^2.5.1",
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.5.5"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "eslintIgnore": [
+    "node_modules",
+    "build",
+    "public/build",
+    "*.ignored/",
+    "*.ignored.*"
+  ]
+}

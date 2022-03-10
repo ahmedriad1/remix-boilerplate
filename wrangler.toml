@@ -1,0 +1,26 @@
+name = "ar1-remix-boilerplate"
+type = "javascript"
+compatibility_date = "2022-03-05"
+
+zone_id = ""
+route = "example.com/*"
+workers_dev = true
+
+# kv_namespaces = [
+#   { binding = "ANYTHING", id = "" }
+# ]
+
+[site]
+bucket = "./public"
+entry-point = "."
+
+[build]
+command = "echo 'Already built ✅'"
+
+[build.upload]
+format="service-worker"
+
+[env.production]
+# kv_namespaces = [
+#   { binding = "ANYTHING", id = "" }
+# ]
