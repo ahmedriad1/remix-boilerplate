@@ -6,11 +6,8 @@ Tech Stack:
 - [Remix](https://remix.run/)
 - [CF Workers](https://cloudflare.com/workers/)
 - [Zustand](https://github.com/pmndrs/zustand)
-- And More !
 
----
-
-Contents:
+## Contents:
 
 - [Setup](#setup)
 - [Development](#development)
@@ -18,25 +15,29 @@ Contents:
 
 ## Setup
 
+Create a project using this template by running:
+
+```ssh
+npx create-remix@latest --template ahmedriad1/remix-boilerplate
+```
+
 To setup the project you need to do the following:
 
 - Copy `.env.example` to `.env`
 - Run `npm install`
 
----
-
 ## Development
 
 ```sh
-$ npm run dev
+npm run dev
 ```
 
 If you want to check the production build, you can stop the dev server and run
 following commands:
 
 ```sh
-$ npm run build
-$ npm start
+npm run build
+npm start
 ```
 
 ## Deployment
@@ -48,9 +49,9 @@ There are two ways to deploy the project:
 - Set gihub secrets:
 
 ```sh
-$ gh secret put CF_ACCOUNT_ID
-$ gh secret put CF_API_TOKEN
-$ gh secret put SESSION_SECRET
+gh secret put CF_ACCOUNT_ID
+gh secret put CF_API_TOKEN
+gh secret put SESSION_SECRET
 ```
 
 - That's it, now u can just push the project and it'll be deployed to CF
@@ -60,7 +61,8 @@ $ gh secret put SESSION_SECRET
 
 - Make sure you have the following:
 
-  - set environment variable `CF_ACCOUNT_ID` in `.env` or `wrangler.toml`
+  - set environment variable `CF_ACCOUNT_ID` in `.env` or set `account_id`
+    `wrangler.toml`
   - authenticated using wrangler
 
 - Then run the following command:
@@ -68,10 +70,5 @@ $ gh secret put SESSION_SECRET
 ```sh
 npm run deploy
 ```
-
-PS: also don't forget to update `/public/robots.txt` &
-`/public/site.webmanifest` before deploying to production.
-
----
 
 Enjoy! 💚

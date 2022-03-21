@@ -4,7 +4,7 @@ npx concurrently \
   --kill-others-on-fail \
   --prefix "[{name}]" \
   --names "lint,typecheck,build" \
-  --prefix-colors "bgRed.bold.white,bgGreen.bold.white,bgBlue.bold.white,bgMagenta.bold.white" \
+  --prefix-colors "bgGreen.bold.white,bgBlue.bold.white,bgMagenta.bold.white" \
     "npm run lint --silent" \
     "npm run typecheck --silent" \
     "npm run build --silent"
