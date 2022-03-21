@@ -6,10 +6,6 @@ zone_id = ""
 route = "example.com/*"
 workers_dev = true
 
-# kv_namespaces = [
-#   { binding = "ANYTHING", id = "" }
-# ]
-
 [site]
 bucket = "./public"
 entry-point = "."
@@ -19,8 +15,3 @@ command = "echo 'Already built ✅'"
 
 [build.upload]
 format="service-worker"
-
-[env.production]
-# kv_namespaces = [
-#   { binding = "ANYTHING", id = "" }
-# ]
