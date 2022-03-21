@@ -61,11 +61,6 @@ async function main({ rootDirectory }) {
     fs.writeFile(PACKAGE_JSON_PATH, newPackageJson),
   ])
 
-  console.log(
-    `Running the setup script to make sure everything was set up properly`,
-  )
-  execSync(`npm run setup`, { stdio: 'inherit', cwd: rootDirectory })
-
   console.log(`✅  Project is ready! Start development with "npm run dev"`)
 }
 
