@@ -1,7 +1,7 @@
 import { json, useLoaderData } from 'remix'
 import type { LoaderFunction, MetaFunction } from 'remix'
 import { getSocialMetas } from '~/utils/seo'
-import { Handle } from '~/types'
+import type { Handle } from '~/types'
 import Container from '~/components/Container'
 
 export const handle: Handle = {

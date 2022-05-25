@@ -1,7 +1,7 @@
 import Container from '~/components/Container'
 
 import { HeartIcon } from '@heroicons/react/outline'
-import { Handle } from 'types'
+import type { Handle } from 'types'
 
 export const handle: Handle = {
   id: 'chapters',

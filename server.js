@@ -6,6 +6,7 @@ import * as build from '@remix-run/dev/server-build'
 
 const handleRequest = createRequestHandler({
   build,
+  // eslint-disable-next-line
   mode: process.env.NODE_ENV,
 })
 

@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 process.env.RUNNING_PRETTIER = 'true'
 
 module.exports = {

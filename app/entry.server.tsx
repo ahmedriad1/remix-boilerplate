@@ -18,10 +18,11 @@ export default async function handleRequest(
   const markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />,
   )
+  const html = `<!DOCTYPE html>${markup}`
 
   responseHeaders.set('Content-Type', 'text/html')
 
-  return new Response('<!DOCTYPE html>' + markup, {
+  return new Response(html, {
     status: responseStatusCode,
     headers: responseHeaders,
   })

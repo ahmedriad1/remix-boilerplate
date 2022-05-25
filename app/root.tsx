@@ -12,8 +12,8 @@ import {
 import type { MetaFunction, LinksFunction, LoaderFunction } from 'remix'
 import Nav from './components/Nav'
 import { getThemeSession } from './cookies/theme.server'
+import type { Theme } from './utils/theme-provider'
 import {
-  Theme,
   ThemeProvider,
   useTheme,
   NonFlashOfWrongThemeEls,
@@ -25,7 +25,7 @@ import { getSocialMetas } from './utils/seo'
 import tailwindStyles from './styles/tailwind.css'
 import fontStyles from './styles/fonts.css'
 import globalStyles from './styles/global.css'
-import { Handle } from './types'
+import type { Handle } from './types'
 
 export const links: LinksFunction = () => {
   return [
@@ -115,7 +115,7 @@ export default function AppWithProviders() {
 
   return (
     <ThemeProvider specifiedTheme={data.theme}>
-        <App />
+      <App />
     </ThemeProvider>
   )
 }

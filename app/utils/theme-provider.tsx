@@ -1,4 +1,11 @@
-import React from 'react'
+import {
+  createContext,
+  createElement,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { useFetcher } from 'remix'
 
 enum Theme {
@@ -13,9 +20,7 @@ type ThemeContextType = [
   React.Dispatch<React.SetStateAction<Theme | null>>,
 ]
 
-const ThemeContext = React.createContext<ThemeContextType | undefined>(
-  undefined,
-)
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 ThemeContext.displayName = 'ThemeContext'
 
 const prefersLightMQ = '(prefers-color-scheme: light)'
@@ -29,7 +34,7 @@ function ThemeProvider({
   children: React.ReactNode
   specifiedTheme: Theme | null
 }) {
-  const [theme, setTheme] = React.useState<Theme | null>(() => {
+  const [theme, setTheme] = useState<Theme | null>(() => {
     if (specifiedTheme) {
       if (themes.includes(specifiedTheme)) return specifiedTheme
       else return null
@@ -42,14 +47,14 @@ function ThemeProvider({
 
   const persistTheme = useFetcher()
   // TODO: remove this when persistTheme is memoized properly
-  const persistThemeRef = React.useRef(persistTheme)
-  React.useEffect(() => {
+  const persistThemeRef = useRef(persistTheme)
+  useEffect(() => {
     persistThemeRef.current = persistTheme
   }, [persistTheme])
 
-  const mountRun = React.useRef(false)
+  const mountRun = useRef(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!mountRun.current) {
       mountRun.current = true
       return
@@ -62,7 +67,7 @@ function ThemeProvider({
     )
   }, [theme])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const mediaQuery = window.matchMedia(prefersLightMQ)
     const handleChange = () => {
       setTheme(mediaQuery.matches ? Theme.LIGHT : Theme.DARK)
@@ -137,7 +142,7 @@ function NonFlashOfWrongThemeEls({ ssrTheme }: { ssrTheme: boolean }) {
 }
 
 function useTheme() {
-  const context = React.useContext(ThemeContext)
+  const context = useContext(ThemeContext)
   if (context === undefined)
     throw new Error('useTheme must be used within a ThemeProvider')
 
@@ -154,7 +159,7 @@ function Themed({
   initialOnly?: boolean
 }) {
   const [theme] = useTheme()
-  const [initialTheme] = React.useState(theme)
+  const [initialTheme] = useState(theme)
   const themeToReference = initialOnly ? initialTheme : theme
   const serverRenderWithUnknownTheme = !theme && typeof window !== 'object'
   if (serverRenderWithUnknownTheme) {
@@ -162,8 +167,8 @@ function Themed({
     // what we'll render in the client during hydration.
     return (
       <>
-        {React.createElement('dark-mode', null, dark)}
-        {React.createElement('light-mode', null, light)}
+        {createElement('dark-mode', null, dark)}
+        {createElement('light-mode', null, light)}
       </>
     )
   } else {
